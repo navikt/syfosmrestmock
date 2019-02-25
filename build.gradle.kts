@@ -25,8 +25,10 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-jackson:$ktorVersion")
+
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
 
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
