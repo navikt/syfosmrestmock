@@ -14,7 +14,7 @@ import no.nav.syfo.restmock.api.registerSakApi
 import java.util.concurrent.TimeUnit
 
 fun main() {
-    val httpServer = embeddedServer(Netty) {
+    val httpServer = embeddedServer(Netty, 8080) {
         install(ContentNegotiation) {
             jackson {
                 registerKotlinModule()

@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val jacksonVersion = "2.9.6"
 val kluentVersion = "1.48"
 val ktorVersion = "1.1.2"
+val logbackVersion = "1.2.3"
 val logstashLogbackEncoderVersion = "5.3"
 val spekVersion = "2.0.0"
 
@@ -27,6 +28,8 @@ dependencies {
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-jackson:$ktorVersion")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
+
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashLogbackEncoderVersion")
 
     testImplementation("org.amshove.kluent:kluent:$kluentVersion")
