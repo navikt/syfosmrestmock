@@ -1,5 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+group = "no.nav.syfo"
+version = "1.0"
+
 val jacksonVersion = "2.9.6"
 val kluentVersion = "1.48"
 val ktorVersion = "1.1.2"
@@ -12,9 +15,6 @@ plugins {
     id("com.github.johnrengelman.shadow") version "4.0.4"
 }
 
-group = "no.nav.syfo"
-version = "1.0"
-
 repositories {
     jcenter()
     maven { url = uri("https://dl.bintray.com/kotlin/ktor") }
@@ -25,7 +25,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    
+
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-jackson:$ktorVersion")
 
