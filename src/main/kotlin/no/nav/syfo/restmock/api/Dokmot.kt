@@ -10,7 +10,7 @@ import no.nav.syfo.restmock.model.MottaInngaandeForsendelseResultat
 import java.util.*
 
 fun Routing.registerDokmotApi() {
-    post("/api/v1/dokmot/journalfoerinngaaende") {
+    post("/rest/mottaInngaaendeForsendelse") {
         val smId = "TODO" // forsendelseInformasjon -> kanalReferanseId
         addStepFor(smId, StepType.JOURNAL_INCOMING)
         call.respond(MottaInngaandeForsendelseResultat(

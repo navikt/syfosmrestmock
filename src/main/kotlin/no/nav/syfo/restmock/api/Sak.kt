@@ -7,7 +7,7 @@ import io.ktor.routing.Routing
 import io.ktor.routing.post
 
 fun Routing.registerSakApi() {
-    post("/api/v1/sak") {
+    post("/api/v1/saker") {
         call.respond(HttpStatusCode.OK, "Everything is OK")
     }
 }
