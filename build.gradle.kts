@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val jacksonVersion = "2.9.6"
-val kluentVersion = "1.39"
+val kluentVersion = "1.48"
 val ktorVersion = "1.1.2"
 val logstashLogbackEncoderVersion = "5.3"
 val spekVersion = "2.0.0"
@@ -14,6 +14,7 @@ group = "no.nav.syfo"
 version = "1.0-SNAPSHOT"
 
 repositories {
+    jcenter()
     maven { url = uri("https://dl.bintray.com/kotlin/ktor") }
     maven { url = uri("https://dl.bintray.com/spekframework/spek-dev") }
     maven { url = uri("https://kotlin.bintray.com/kotlinx") }
@@ -40,7 +41,7 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks {
-    "printVersion" {
+    register("printVersion") {
         println(project.version)
     }
 }
