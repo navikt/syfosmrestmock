@@ -8,6 +8,7 @@ val spekVersion = "2.0.0"
 
 plugins {
     kotlin("jvm") version "1.3.21"
+    id("com.github.johnrengelman.shadow") version "4.0.4"
 }
 
 group = "no.nav.syfo"
@@ -34,6 +35,10 @@ dependencies {
 
     testRuntimeOnly("org.spekframework.spek2:spek-runtime-jvm:$spekVersion")
     testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:$spekVersion")
+}
+
+tasks.withType<Jar> {
+    manifest.attributes["Main-Class"] = "no.nav.syfo.restmock.BootstrapKt"
 }
 
 tasks.withType<KotlinCompile> {
