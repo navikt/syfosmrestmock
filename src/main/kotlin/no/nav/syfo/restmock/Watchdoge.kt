@@ -31,20 +31,28 @@ fun runWatchdoge() {
     }
 }
 
+fun addAndReturn(smId: String, step: Timed<StepType>): Timed<MutableList<Timed<StepType>>> {
+    val currentState = state[smId]
+    return if (currentState == null) {
+        Timed(timestamp = System.currentTimeMillis(), data = mutableListOf(step))
+    } else {
+        if (currentState.data.any { it.data == step.data }) {
+            log.warn("Got a duplicate step of type {}", keyValue("step", step))
+        } else {
+            currentState.data.add(step)
+        }
+        currentState
+    }
+}
+
 fun addStepFor(smId: String, stepType: StepType) {
     val step = Timed(timestamp = System.currentTimeMillis(), data = stepType)
     stateLock.write {
-        val currentState = state[smId]
-        if (currentState != null) {
-            if (StepType.values().all { stepType -> (currentState.data + listOf(stepType)).any { it == stepType } }) {
-                log.info("Successfully finished all steps for {}", keyValue("id", smId))
-            }
-        }
+        val currentState = addAndReturn(smId, step)
 
-        when {
-            currentState == null -> state[smId] = Timed(timestamp = System.currentTimeMillis(), data = mutableListOf(step))
-            currentState.data.any { it.data == stepType } -> log.warn("Got a duplicate step of type {}", keyValue("step", step))
-            else -> currentState.data.add(step)
+        if (StepType.values().all { stepType -> (currentState.data + listOf(stepType)).any { it == stepType } }) {
+            log.info("Successfully finished all steps for {}", keyValue("id", smId))
+            state.remove(smId)
         }
 
         runWatchdoge()
