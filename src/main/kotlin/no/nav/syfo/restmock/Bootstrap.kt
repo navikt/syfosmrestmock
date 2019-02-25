@@ -9,6 +9,7 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import no.nav.syfo.restmock.api.registerDokmotApi
+import no.nav.syfo.restmock.api.registerNaisSelftests
 import no.nav.syfo.restmock.api.registerSakApi
 import java.util.concurrent.TimeUnit
 
@@ -21,6 +22,7 @@ fun main() {
             }
         }
         routing {
+            registerNaisSelftests()
             registerSakApi()
             registerDokmotApi()
         }
