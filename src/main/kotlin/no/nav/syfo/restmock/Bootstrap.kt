@@ -25,6 +25,7 @@ fun main() {
                 configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             }
         }
+
         routing {
             registerNaisSelftests()
             registerSakApi()
