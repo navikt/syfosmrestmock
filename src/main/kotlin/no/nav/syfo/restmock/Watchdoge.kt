@@ -65,5 +65,11 @@ data class Timed<T>(
 )
 
 enum class StepType(val required: Boolean = false) {
-    JOURNAL_INCOMING(required = true)
+    JOURNAL_INCOMING(required = true),
+    INFOTRYGD_UPDATE,
+    ARENA_UPDATE,
+    OPPGAVE_CREATE,
+    EMOTTAK_SUBSCRIPTION_UPDATE(required = true),
+    APPREC(required = true),
+    SYFOSERVICE(required = true)
 }
