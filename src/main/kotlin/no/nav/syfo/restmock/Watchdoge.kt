@@ -50,7 +50,7 @@ fun addStepFor(smId: String, stepType: StepType) {
     stateLock.write {
         val currentState = addAndReturn(smId, step)
 
-        if (StepType.values().all { stepType -> (currentState.data + listOf(stepType)).any { it == stepType } }) {
+        if (StepType.values().all { s -> (currentState.data + listOf(stepType)).any { it == s } }) {
             log.info("Successfully finished all steps for {}", keyValue("id", smId))
             state.remove(smId)
         }
@@ -71,5 +71,5 @@ enum class StepType(val required: Boolean = false) {
     OPPGAVE_CREATE,
     EMOTTAK_SUBSCRIPTION_UPDATE(required = true),
     APPREC(required = true),
-    SYFOSERVICE(required = true)
+    SYFOSERVICE_UPDATE(required = true)
 }
