@@ -10,10 +10,7 @@ import io.ktor.jackson.jackson
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import no.nav.syfo.restmock.api.registerDokmotApi
-import no.nav.syfo.restmock.api.registerMockStatus
-import no.nav.syfo.restmock.api.registerNaisSelftests
-import no.nav.syfo.restmock.api.registerSakApi
+import no.nav.syfo.restmock.api.*
 import java.util.concurrent.TimeUnit
 
 fun main() {
@@ -32,6 +29,7 @@ fun main() {
             registerSakApi()
             registerDokmotApi()
             registerMockStatus()
+            registerOppgaveApi()
         }
     }.start(wait = false)
 
