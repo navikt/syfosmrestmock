@@ -1,13 +1,16 @@
 package no.nav.syfo.restmock.model
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import java.time.ZonedDateTime
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class MottaInngaandeForsendelseResultat(
     val journalpostId: String,
     val journalTilstand: String,
-    val dokumentIdList: List<String>
+    val dokumentIdListe: List<String>
 )
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class MottaInngaaendeForsendelse(
     val forsokEndeligJF: Boolean,
     val forsendelseInformasjon: ForsendelseInformasjon,
@@ -16,9 +19,10 @@ data class MottaInngaaendeForsendelse(
     val dokumentInfoVedlegg: List<DokumentInfo>
 )
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class ForsendelseInformasjon(
-    val bruker: Aktoer,
-    val avsender: Aktoer,
+    val bruker: AktoerWrapper,
+    val avsender: AktoerWrapper,
     val tema: String,
     val kanalReferanseId: String,
     val forsendelseMottatt: ZonedDateTime,
@@ -28,23 +32,42 @@ data class ForsendelseInformasjon(
     val arkivSak: ArkivSak?
 )
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+data class AktoerWrapper(
+    val aktoer: Aktoer
+)
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class Aktoer(
-    val orgnr: String? = null,
-    val aktoerId: String? = null,
-    val fnr: String? = null,
+    val organisasjon: Organisasjon? = null,
+    val person: Person? = null
+)
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+data class Person(
+    val ident: String? = null,
+    val fnr: String? = null
+)
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+data class Organisasjon(
+    val orgnr: String,
     val navn: String? = null
 )
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class ArkivSak(
     val arkivSakSystem: String,
     val arkivSakId: String
 )
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class Tilleggsopplysning(
     val nokkel: String,
     val verdi: String
 )
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class DokumentInfo(
     val dokumentTypeId: String? = null,
     val tittel: String?,
@@ -53,6 +76,7 @@ data class DokumentInfo(
     val dokumentVariant: List<DokumentVariant>
 )
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class DokumentVariant(
     val arkivFilType: String,
     val variantFormat: String,
