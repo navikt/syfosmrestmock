@@ -36,6 +36,11 @@ pipeline {
                 sh './gradlew shadowJar'
             }
         }
+        stage('create docker image') {
+            steps {
+                dockerUtils action: 'createPushImage'
+            }
+        }
         stage('deploy to production') {
             steps {
                 deployApp action: 'kubectlDeploy', cluster: 'prod-fss'
